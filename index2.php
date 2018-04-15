@@ -10,7 +10,7 @@ $course_batchUID=$_POST['context_label'];
 $user_id=$_POST['user_id'];
 $name=$_POST['lis_person_name_full'];
 //replacement for the Constant public $HOSTNAME =
-preg_match_all('/\//', $url,$matches, PREG_OFFSET_CAPTURE);
+preg_match_all('/\//', $url,$matches, PREG_OFFSET_CAPTURE);  
 $clientURL = substr($url, 0, $matches[0][2][1]);
 */
 //echo "Welcome $name.  Your course is $course_title ($course_batchUID).<br /><br /><br />";
@@ -28,6 +28,8 @@ $access_token = $token->access_token;
 //$course = $rest->readCourse($access_token, $course_id);
 //var_dump($course);
 //echo $user_id;
+
+
 $user_id = '_45_1';
 
 
@@ -40,9 +42,9 @@ echo " <br /> ";
 $courseList=array();
 foreach($c as $row) {
 
-        //echo $row->courseId;
-        array_push($courseList,$row->courseId);
-        $course = $rest->readCourse($access_token, $row->courseId);
+	//echo $row->courseId;
+	array_push($courseList,$row->courseId);
+	$course = $rest->readCourse($access_token, $row->courseId);
         echo "course id: " . $row->courseId . "   name of course: " . $course->name . "<br />";
         //$membership = $rest->readMembership($access_token, $course_id);
 }
@@ -53,15 +55,24 @@ $membership = $rest->readMembership($access_token,$courseList[$i] );
 $c = $membership->results;
 echo "Users in course " . $courseList[$i] . ":<br /> ";
 foreach($c as $row) {
-        echo $row->userId;
-$usersList[] =  $row->userId;
+	echo $row->userId;
+	array_push($usersList,$row->userId);
 
 }
 echo " <br /> ";
 }
 
+$countarray = array_count_values($usersList);
+
+foreach($countarray as $x => $x_value){
+        echo "Student: " . $x . ", Classes together: " . $x_value;
+        echo "<br>";
+}
+
+
+
 foreach($c as $row) {
-//      echo $row->userId; ;
+//	echo $row->userId; ;
 
 }
 
@@ -74,10 +85,10 @@ $c=$columns->results;
 foreach($c as $row)
 {
         // echo $row->name;
-        if($row->name == "Weighted Total") {
-//      echo "another col";
+	if($row->name == "Weighted Total") {
+//	echo "another col";
 }
-        //if ($row->externalGrade == 1)
+	//if ($row->externalGrade == 1)
         if ($row->name == "Weighted Total")
         {
          $finalGradeName=$row->name;
@@ -85,18 +96,19 @@ foreach($c as $row)
          //$finalPossible=$row->score->possible;
          break;
         }
+
 }
+
 //echo $finalGradeName . " " . $finalGradeID;
 $grades = $rest->readGradebookGrades($access_token, $course_id, $finalGradeID);
 $g=$grades->results;
 
 foreach($g as $row)
 {
-
+	
        // echo " User ID:" . $row->userId . " has " .$row->score." out of ".$finalPossible . " points.";
-
+	
 }
 */
 ?>
-
 
