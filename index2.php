@@ -33,7 +33,7 @@ foreach($c as $row) {
        //$membership = $rest->readMembership($access_token, $course_id);
     	echo "<tr>";
        echo "<td>$course->name</td>";
-       echo "<td>$course->description</td>";
+       echo "<td>$course->courseId</td>";
        
 	echo "</tr>";
 }
@@ -49,11 +49,31 @@ foreach($c as $row) {
 }
 //echo " <br /> ";
 }
+$commonusers = array();
 $countarray = array_count_values($usersList);
 foreach($countarray as $x => $x_value){
         //echo "Student: " . $x . ", Classes together: " . $x_value;
+	if($x_value == count($courseList)) {
+        array_push($commonusers,$x);
+	}
         //echo "<br>";
 }
+$commonusersfname = array();
+$commonuserslname = array();
+for($i=0; $i<count($commonusers);$i++){
+
+	//echo "common user" . $i . ": " . $commonusers[$i];
+	$user = $rest->readUser2($access_token, $commonusers[$i]);
+	
+	echo $user->name->given;
+	array_push($commonusersfname,$user->name->given);
+	echo $user->name->family;
+	array_push($commonuserslname,$user->name->family);
+	echo "<br>";
+
+}
+	
+
 ?>
 <?PHP
 $bararray = array_fill(1, 6, 0);
@@ -117,4 +137,5 @@ foreach($countarray as $x => $x_value){
         window.myBar = new Chart(ctx, config);
     };
 </script>
+
 
