@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+<?php
+session_start();
+if(isset($_SESSION['error_message2'])){
+     $message = "Username already taken.\\nTry again.";
+  echo "<script type='text/javascript'>alert('$message');</script>";
+   unset($_SESSION['error_message2']);
+}
+?>
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
