@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+session_start();
+if(isset($_SESSION['error_message'])){
+     $message = "Username and/or Password incorrect.\\nTry again.";
+  echo "<script type='text/javascript'>alert('$message');</script>";
+   unset($_SESSION['error_message']);
+}
+?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -70,18 +78,18 @@ span.psw {
 
 <h2>Login</h2>
 
-<form action="/action_page.php">
+<form action="/Project/checkcreds.php" method="post">
   <div class="imgcontainer">
    <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar">
   -->
 </div>
 
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="uname"><b>User ID</b></label>
+    <input type="text" placeholder="Enter User ID" name="userident" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="passw" required>
         
     <button type="submit">Login</button>
     <label>
