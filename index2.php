@@ -4,6 +4,10 @@
 <link rel="stylesheet" type="text/css" href="main.css"> 
 </head>
 <?PHP
+session_start();
+$user_id = $_SESSION['userid'];
+//echo $user_id1;
+
 require('nav.php');
 $clientURL="http://bb.dataii.com:8080";
 require_once('classes/Rest.class.php');
@@ -12,7 +16,7 @@ $rest = new Rest($clientURL);
 $token = new Token();
 $token = $rest->authorize();
 $access_token = $token->access_token;
-$user_id = '_45_1';
+//$user_id = '_45_1';
 $user = $rest->readUser($access_token, $user_id);
 $c = $user->results;
 //echo "user is hardcoded, user_id:" .  $user_id;
@@ -20,7 +24,6 @@ $c = $user->results;
 $courseList=array();
 echo "<table class='table' >";
 echo "<tr><th>Name</th><th>Description</th></tr>";
-
 foreach($c as $row) {
 		
 	//echo $row->courseId;
@@ -28,7 +31,6 @@ foreach($c as $row) {
 	$course = $rest->readCourse($access_token, $row->courseId);
        //echo "course id: " . $row->courseId . "   name of course: " . $course->name . "<br />";
        //$membership = $rest->readMembership($access_token, $course_id);
-
     	echo "<tr>";
        echo "<td>$course->name</td>";
        echo "<td>$course->description</td>";
@@ -83,7 +85,6 @@ foreach($countarray as $x => $x_value){
     var randomScalingFactor = function() {
         return Math.round(Math.random() * 100);
     };
-
     var config = {
         type: 'bar',
         data: {
@@ -111,9 +112,9 @@ foreach($countarray as $x => $x_value){
             responsive: true
         }
     };
-
     window.onload = function() {
         var ctx = document.getElementById("chart-area").getContext("2d");
         window.myBar = new Chart(ctx, config);
     };
 </script>
+
