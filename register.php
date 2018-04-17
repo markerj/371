@@ -81,7 +81,7 @@ button:hover {
 }
 </style>
 <body>
-<form action="insert.php" method="post">
+<form name="credentials" action="insert.php" method="post" onsubmit="return validatePass()">
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
@@ -91,13 +91,11 @@ button:hover {
     <input type="text" placeholder="Enter User ID" name="userid" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="text" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw" required>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-    
-    
-    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+    <label id="errorlabel" style="color:red"></label>
 
     <div class="clearfix">
 
@@ -109,5 +107,19 @@ button:hover {
 </form>
 
 </body>
+     <script>
+function validatePass() {
+    var pass1 = document.forms["credentials"]["psw"].value;
+    var pass2 = document.forms["credentials"]["psw-repeat"].value;   
+    if (pass1 != pass2) {
+       document.getElementById('errorlabel').innerHTML = 'Passwords must match.';
+	return false;
+    }
+}
+
+function cancel(){
+    window.location.replace("index.php");
+}
+</script>
 </html>
 
