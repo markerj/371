@@ -5,6 +5,7 @@
 </head>
 <?PHP
 session_start();
+require("auth.php");
 $user_id = $_SESSION['userid'];
 //echo $user_id1;
 
@@ -132,10 +133,10 @@ foreach($countarray as $x => $x_value){
             labels: [
                 "Shares 1 class",
                 "Shares 2 classes",
-                "3",
-                "4",
-				"5",
-				"6"
+                "Shares 3 classes",
+                "Shares 4 classes",
+		"Shares 5 classes",
+		"Shares 6 classes"
             ]
         },
         options: {
