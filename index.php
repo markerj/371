@@ -78,7 +78,7 @@ span.psw {
 
 <h2>Login</h2>
 
-<form action="/Project/checkcreds.php" method="post">
+<form action="checkcreds.php" method="post">
   <div class="imgcontainer">
    <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar">
   -->
