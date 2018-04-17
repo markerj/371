@@ -27,7 +27,7 @@ echo $psw;
 	VALUES
 	('$userid','$psw')";
 	mysqli_query($conn,$sql) or die ('Error updating database');
- 	header("Location: https://markerj.hopto.org:9017/Project/");
+ 	header("Location: index.php");
     	exit;
 
     }   
