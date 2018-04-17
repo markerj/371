@@ -99,7 +99,7 @@ span.psw {
 
 </form>
  <div class="container" style="background-color:#f1f1f1">
-        <form action="register.html">
+        <form action="register.php">
     <input type="submit" value="Register" />
         </form>   
           </div>
