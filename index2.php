@@ -60,19 +60,29 @@ foreach($countarray as $x => $x_value){
 }
 $commonusersfname = array();
 $commonuserslname = array();
+echo "<table class='table' >";
+echo "<tr><th>First Name</th><th>Last Name</th></tr>";
+
 for($i=0; $i<count($commonusers);$i++){
 
-	//echo "common user" . $i . ": " . $commonusers[$i];
-	$user = $rest->readUser2($access_token, $commonusers[$i]);
-	
-	echo $user->name->given;
-	array_push($commonusersfname,$user->name->given);
-	echo $user->name->family;
-	array_push($commonuserslname,$user->name->family);
-	echo "<br>";
+        //echo "common user" . $i . ": " . $commonusers[$i];
+        $user = $rest->readUser2($access_token, $commonusers[$i]);
+
+        echo $user->name->given;
+        array_push($commonusersfname,$user->name->given);
+        echo $user->name->family;
+        array_push($commonuserslname,$user->name->family);
 
 }
-	
+
+for($i=0; $i<count($commonusers);$i++){
+
+        echo "<tr>";
+        echo "<td>$commonusersfname[$i]</td>";
+        echo "<td>$commonuserslname[$i]</td>";
+        echo "</tr>";
+
+}
 
 ?>
 <?PHP
